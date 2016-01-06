@@ -1,21 +1,14 @@
 Rails.application.routes.draw do
 
   namespace :api do
-  namespace :v1 do
-    namespace :customers do
-      get 'transactions/index'
-      end
-    end
-  end
-
-  namespace :api do
     namespace :v1 do
 
       resources :merchants, except: [:new, :edit], defaults: { format: :json } do
         collection do
-          get '/find',      to: "merchant_finder#index"
-          get '/find_all',  to: "merchant_finder#show"
-          get '/random',    to: "merchant_random#index"
+          get '/find',          to: "merchant_finder#index"
+          get '/find_all',      to: "merchant_finder#show"
+          get '/random',        to: "merchant_random#index"
+          get '/most_revenue',  to: "most_revenue#index"
         end
 
         member do
