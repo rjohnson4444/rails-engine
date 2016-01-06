@@ -26,11 +26,12 @@ end
 
 def import_customers(customers)
   customers.each do |customer|
-    customer = Customer.create!(first_name: customer[:first_name],
-                     last_name: customer[:last_name],
-                     created_at: customer[:created_at],
-                     updated_at: customer[:updated_at]
-                     )
+    customer = Customer.create!(id: customer[:id],
+                                first_name: customer[:first_name],
+                                last_name: customer[:last_name],
+                                created_at: customer[:created_at],
+                                updated_at: customer[:updated_at]
+                                )
     puts "Customer #{customer.first_name} #{customer.id} created"
   end
 end
@@ -40,7 +41,7 @@ def import_merchants(merchants)
     merchant = Merchant.create!(id: merchant[:id],
                                 name: merchant[:name],
                                 created_at: merchant[:created_at],
-                                updated_at: merchant[:created_at]
+                                updated_at: merchant[:updated_at]
                                 )
     puts "Merchant #{merchant.name} #{merchant.id} created"
   end
@@ -54,7 +55,7 @@ def import_items(items)
                         unit_price: item[:unit_price],
                         merchant_id: item[:merchant_id],
                         created_at: item[:created_at],
-                        updated_at: item[:created_at]
+                        updated_at: item[:updated_at]
                         )
     puts "#{item.name} #{item.id} created"
   end
@@ -65,9 +66,9 @@ def import_invoices(invoices)
     invoice = Invoice.create!(id: invoice[:id],
                               customer_id: invoice[:customer_id],
                               merchant_id: invoice[:merchant_id],
-                              status: invoice[:description],
+                              status: invoice[:status],
                               created_at: invoice[:created_at],
-                              updated_at: invoice[:created_at]
+                              updated_at: invoice[:updated_at]
                               )
     puts "Invoice #{invoice.id} created"
   end
@@ -78,10 +79,9 @@ def import_transactions(transactions)
     transaction = Transaction.create!(id: transaction[:id],
                                       invoice_id: transaction[:invoice_id],
                                       credit_card_number: transaction[:credit_card_number],
-                                      credit_card_expiration_date: transaction[:credit_card_expiration_date],
                                       result: transaction[:result],
                                       created_at: transaction[:created_at],
-                                      updated_at: transaction[:created_at]
+                                      updated_at: transaction[:updated_at]
                                       )
     puts "Transaction #{transaction.id} created"
   end
@@ -95,7 +95,7 @@ def import_invoice_items(invoice_items)
                                       quantity: invoice_item[:quantity],
                                       unit_price: invoice_item[:unit_price],
                                       created_at: invoice_item[:created_at],
-                                      updated_at: invoice_item[:created_at]
+                                      updated_at: invoice_item[:updated_at]
                                       )
     puts "Invoice Item ##{invoice_item.id} created"
   end
