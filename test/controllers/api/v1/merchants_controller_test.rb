@@ -2,7 +2,7 @@ require 'test_helper'
 
 class Api::V1::MerchantsControllerTest < ActionController::TestCase
   test "index return all merchants" do
-    get :index
+    get :index, format: :json
 
     assert_response :success
   end
