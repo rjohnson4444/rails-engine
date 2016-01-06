@@ -10,23 +10,22 @@ class Api::V1::CustomerFinderControllerTest < ActionController::TestCase
   test "#index returns an array of records" do
     get :index, format: :json
 
-    assert_kind_of Array, json_response
+    assert_kind_of Hash, json_response
   end
 
-  test "#index returns the correct number of items" do
+  test "#index returns one customer" do
     get :index, format: :json
 
-    assert_equal Item.count, json_response.count
+    assert_equal 1, json_response.count
   end
 
-  test "#index contains items that have the correct properties" do
+  test "#index contains a customer that has the correct properties" do
     get :index, format: :json
 
-    json_response.each do |item|
-      assert item["first_name"]
-      assert item["last_name"]
-      assert item["created_at"]
-      assert item["updated_at"]
-    end
+    assert json_response["id"]
+    assert json_response["first_name"]
+    assert json_response["last_name"]
+    assert json_response["created_at"]
+    assert json_response["updated_at"]
   end
 end

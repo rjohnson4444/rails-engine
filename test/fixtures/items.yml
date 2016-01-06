@@ -3,11 +3,11 @@
 one:
   name: MyString
   description: MyString
-  unit_price: MyString
-  merchant_id:
+  unit_price: 123.12
+  merchant_id: 1
 
 two:
   name: MyString
   description: MyString
-  unit_price: MyString
-  merchant_id:
+  unit_price: 123.12
+  merchant_id: 2

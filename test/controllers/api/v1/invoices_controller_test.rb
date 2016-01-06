@@ -2,14 +2,8 @@ require 'test_helper'
 
 class Api::V1::InvoicesControllerTest < ActionController::TestCase
   test "index return all invoices" do
-    get :index
-
-    assert_response :success
-  end
-
-  test "show returns specified invoices by id" do
     skip
-    get :show, { id: "2" }
+    get :index
 
     assert_response :success
   end
