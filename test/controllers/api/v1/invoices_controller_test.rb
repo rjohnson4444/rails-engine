@@ -8,6 +8,7 @@ class Api::V1::InvoicesControllerTest < ActionController::TestCase
   end
 
   test "show returns specified invoices by id" do
+    skip
     get :show, { id: "2" }
 
     assert_response :success

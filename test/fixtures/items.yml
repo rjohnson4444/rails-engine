@@ -4,10 +4,10 @@ one:
   name: MyString
   description: MyString
   unit_price: MyString
-  merchant_id: 
+  merchant_id:
 
 two:
   name: MyString
   description: MyString
   unit_price: MyString
-  merchant_id: 
+  merchant_id:

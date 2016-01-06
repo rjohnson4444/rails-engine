@@ -8,7 +8,7 @@ class Api::V1::TransactionsControllerTest < ActionController::TestCase
   end
 
   test "show returns specified transaction by id" do
-    get :show, { id: "2" }
+    get :show
 
     assert_response :success
   end
