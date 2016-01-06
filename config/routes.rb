@@ -1,56 +1,95 @@
 Rails.application.routes.draw do
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  namespace :api do
+  namespace :v1 do
+    namespace :customers do
+      get 'transactions/index'
+      end
+    end
+  end
 
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+  namespace :api do
+    namespace :v1 do
 
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+      resources :merchants, except: [:new, :edit], defaults: { format: :json } do
+        collection do
+          get '/find',      to: "merchant_finder#index"
+          get '/find_all',  to: "merchant_finder#show"
+          get '/random',    to: "merchant_random#index"
+        end
 
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+        member do
+          get '/items',     to: "merchants/items#index"
+          get '/invoices',  to: "merchants/invoices#index"
+        end
+      end
 
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
+      resources :customers, except: [:new, :edit], defaults: { format: :json } do
+        collection do
+          get '/find',      to: "customer_finder#index"
+          get '/find_all',  to: "customer_finder#show"
+          get '/random',    to: "customer_random#index"
+        end
 
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
+        member do
+          get '/invoices',      to: "customers/invoices#index"
+          get '/transactions',  to: "customers/transactions#index"
+        end
+      end
 
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
+      resources :transactions, except: [:new, :edit], defaults: { format: :json } do
+        collection do
+          get '/find',      to: "transaction_finder#index"
+          get '/find_all',  to: "transaction_finder#show"
+          get '/random',    to: "transaction_random#index"
+        end
 
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
+        member do
+          get '/invoice', to: "transactions/invoice#index"
+        end
+      end
 
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+      resources :items, except: [:new, :edit], defaults: { format: :json } do
+        collection do
+          get '/find',      to: "item_finder#index"
+          get '/find_all',  to: "item_finder#show"
+          get '/random',    to: "item_random#index"
+        end
+
+        member do
+          get '/invoice_items',  to: "items/invoice_items#index"
+          get '/merchant',       to: "items/merchant#index"
+        end
+      end
+
+      resources :invoices, except: [:new, :edit], defaults: { format: :json } do
+        collection do
+          get '/find',      to: "invoice_finder#index"
+          get '/find_all',  to: "invoice_finder#show"
+          get '/random',    to: "invoice_random#index"
+        end
+
+        member do
+          get '/transactions',  to: "invoices/transactions#index"
+          get '/invoice_items', to: "invoices/invoice_items#index"
+          get '/items',         to: "invoices/items#index"
+          get '/customer',      to: "invoices/customer#index"
+          get '/merchant',      to: "invoices/merchant#index"
+        end
+      end
+
+      resources :invoice_items, except: [:new, :edit], defaults: { format: :json } do
+        collection do
+          get '/find',      to: "invoice_item_finder#index"
+          get '/find_all',  to: "invoice_item_finder#show"
+          get '/random',    to: "invoice_item_random#index"
+        end
+
+        member do
+          get '/invoice',    to: "invoice_items/invoice#index"
+          get '/item',       to: "invoice_items/item#index"
+        end
+      end
+    end
+  end
 end
