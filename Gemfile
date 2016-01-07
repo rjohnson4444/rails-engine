@@ -28,6 +28,8 @@ gem 'responders'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
+gem 'turbolinks'
+gem 'database_cleaner', group: :test
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

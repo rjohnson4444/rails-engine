@@ -6,8 +6,8 @@ class Merchant < ActiveRecord::Base
   has_many :invoice_items, through: :invoices
   has_many :transactions, through: :invoices
 
-  def ramdom_merchant
-    self.order("RANDOM()").first
+  def self.random_merchant
+    offset(rand(Merchant.count)).first
   end
 
   def self.revenue_by_date(date, id)
@@ -41,9 +41,10 @@ class Merchant < ActiveRecord::Base
   end
 
   def customers_with_pending_invoices
-    need_to_pay = []
-    self.invoices.pending.map { |invoice| need_to_pay << invoice.customer }
-    need_to_pay.uniq
-    # self.invoices.joins(:transactions).where('transactions.result = ?', 'failed').
+    self.invoices
+          .joins(:transactions)
+          .where('transactions.result = ?', 'failed')
+          .distinct
+          .map { |invoice| invoice.customer }
   end
 end

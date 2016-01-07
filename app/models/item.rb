@@ -5,8 +5,8 @@ class Item < ActiveRecord::Base
 
   before_create :convert_to_dollars
 
-  def random_item
-    self.order("RANDOM()").first
+  def self.random_item
+    offset(rand(Merchant.count)).first
   end
 
   def convert_to_dollars
