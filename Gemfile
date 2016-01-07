@@ -11,6 +11,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'responders'
 gem 'turbolinks'
 gem 'database_cleaner', group: :test
+gem 'shoulda', group: :test
 
 group :development, :test do
   gem 'pry'

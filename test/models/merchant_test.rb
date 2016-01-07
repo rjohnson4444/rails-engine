@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class MerchantTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  should have_many(:items)
+  should have_many(:invoices)
+  should have_many(:transactions)
 end
