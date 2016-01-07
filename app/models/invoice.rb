@@ -11,7 +11,7 @@ class Invoice < ActiveRecord::Base
     offset(rand(Merchant.count)).first
   end
 
-  def self.pending
-    joins(:transactions).where(transactions: { result: "failed" })
-  end
+  # def self.pending
+  #   joins(:transactions).where(transactions: { result: "failed" })
+  # end
 end
