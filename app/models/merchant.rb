@@ -41,9 +41,10 @@ class Merchant < ActiveRecord::Base
   end
 
   def customers_with_pending_invoices
-    need_to_pay = []
-    self.invoices.pending.map { |invoice| need_to_pay << invoice.customer }
-    need_to_pay.uniq
-    # self.invoices.joins(:transactions).where('transactions.result = ?', 'failed').
+    self.invoices
+          .joins(:transactions)
+          .where('transactions.result = ?', 'failed')
+          .distinct
+          .map { |invoice| invoice.customer }
   end
 end

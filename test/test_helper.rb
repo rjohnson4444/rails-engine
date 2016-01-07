@@ -19,3 +19,13 @@ class ActionController::TestCase
     JSON.parse(response.body)
   end
 end
+
+class Minitest::Spec
+  def setup
+    DatabaseCleaner.start
+  end
+
+  def teardown
+    DatabaseCleaner.clean
+  end
+end

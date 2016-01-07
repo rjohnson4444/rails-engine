@@ -3,4 +3,8 @@ class Transaction < ActiveRecord::Base
 
   belongs_to :invoice
   belongs_to :customer
+
+  def self.random_transaction
+    offset(rand(Merchant.count)).first
+  end
 end

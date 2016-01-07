@@ -9,7 +9,7 @@ class InvoiceItem < ActiveRecord::Base
     self.unit_price = (unit_price / 100)
   end
 
-  def random_invoice_item
+  def self.random_invoice_item
     offset(rand(Merchant.count)).first    
   end
 end

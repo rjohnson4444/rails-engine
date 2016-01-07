@@ -7,8 +7,8 @@ class Invoice < ActiveRecord::Base
   has_many   :invoice_items
   has_many   :items, through: :invoice_items
 
-  def random_invoice
-    offset(rand(Merchant.count)).first    
+  def self.random_invoice
+    offset(rand(Merchant.count)).first
   end
 
   def self.pending
