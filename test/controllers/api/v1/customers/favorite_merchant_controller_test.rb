@@ -6,4 +6,5 @@ class Api::V1::Customers::FavoriteMerchantControllerTest < ActionController::Tes
     assert_response :success
   end
 
+
 end
