@@ -2,8 +2,8 @@ require 'test_helper'
 
 class Api::V1::Customers::TransactionsControllerTest < ActionController::TestCase
   test "should get index" do
-    skip
-    get :index
+    get :index, format: :json, id: Customer.first.id
+
     assert_response :success
   end
 

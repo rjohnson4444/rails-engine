@@ -10,6 +10,6 @@ class InvoiceItem < ActiveRecord::Base
   end
 
   def self.random_invoice_item
-    offset(rand(Merchant.count)).first    
+    offset(rand(Merchant.count)).first
   end
 end
