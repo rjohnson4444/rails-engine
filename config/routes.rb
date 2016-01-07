@@ -9,11 +9,16 @@ Rails.application.routes.draw do
           get '/find_all',      to: "merchant_finder#show"
           get '/random',        to: "merchant_random#index"
           get '/most_revenue',  to: "most_revenue#index"
+          get '/most_items',    to: "most_items#index"
+          get '/revenue',       to: "merchant_revenue#index"
         end
 
         member do
-          get '/items',     to: "merchants/items#index"
-          get '/invoices',  to: "merchants/invoices#index"
+          get '/items',                           to: "merchants/items#index"
+          get '/invoices',                        to: "merchants/invoices#index"
+          get '/revenue',                         to: "merchants/revenue#show"
+          get '/favorite_customer',               to: "merchants/favorite_customer#show"
+          get '/customers_with_pending_invoices', to: "merchants/customers_with_pending_invoices#show"
         end
       end
 
@@ -25,8 +30,9 @@ Rails.application.routes.draw do
         end
 
         member do
-          get '/invoices',      to: "customers/invoices#index"
-          get '/transactions',  to: "customers/transactions#index"
+          get '/invoices',           to: "customers/invoices#index"
+          get '/transactions',       to: "customers/transactions#index"
+          get '/favorite_merchant',  to: "customers/favorite_merchant#show"
         end
       end
 
@@ -44,14 +50,17 @@ Rails.application.routes.draw do
 
       resources :items, except: [:new, :edit], defaults: { format: :json } do
         collection do
-          get '/find',      to: "item_finder#index"
-          get '/find_all',  to: "item_finder#show"
-          get '/random',    to: "item_random#index"
+          get '/find',         to: "item_finder#index"
+          get '/find_all',     to: "item_finder#show"
+          get '/random',       to: "item_random#index"
+          get '/most_revenue', to: "item_most_revenue#index"
+          get '/most_items',   to: "item_most_items#show"
         end
 
         member do
           get '/invoice_items',  to: "items/invoice_items#index"
           get '/merchant',       to: "items/merchant#index"
+          get '/best_day',       to: "items/best_day#show"
         end
       end
 
