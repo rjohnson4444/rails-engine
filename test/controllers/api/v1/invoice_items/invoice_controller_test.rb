@@ -2,8 +2,8 @@ require 'test_helper'
 
 class Api::V1::InvoiceItems::InvoiceControllerTest < ActionController::TestCase
   test "should get index" do
-    skip
-    get :index
+    get :index, id: InvoiceItem.last.id, format: :json
+
     assert_response :success
   end
 end
