@@ -11,4 +11,7 @@ class Invoice < ActiveRecord::Base
     self.order("RANDOM()").first
   end
 
+  def self.pending
+    joins(:transactions).where(transactions: { result: "failed" })
+  end
 end

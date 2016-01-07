@@ -4,5 +4,4 @@ class Api::V1::CustomerRandomController < ApplicationController
   def index
     respond_with Customer.random_customer
   end
-
 end
