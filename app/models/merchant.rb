@@ -6,8 +6,8 @@ class Merchant < ActiveRecord::Base
   has_many :invoice_items, through: :invoices
   has_many :transactions, through: :invoices
 
-  def ramdom_merchant
-    self.order("RANDOM()").first
+  def self.random_merchant
+    offset(rand(Merchant.count)).first
   end
 
   def self.revenue_by_date(date, id)

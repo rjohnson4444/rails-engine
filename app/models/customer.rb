@@ -3,8 +3,8 @@ class Customer < ActiveRecord::Base
   has_many :invoices
   has_many :transactions, through: :invoices
 
-  def ramdom_customer
-    self.order("RANDOM()").first
+  def self.random_customer
+    order("RANDOM()").first
   end
 
   def favorite_merchant
